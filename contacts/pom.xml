@@ -1,10 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nfc</groupId>
-  <artifactId>contacts</artifactId>
+  <artifactId>contact</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-   <!-- Inherit defaults from Spring Boot -->
-
     <!-- Add typical dependencies for a web application -->
     <dependencies>
         <dependency>
@@ -20,7 +18,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.0.0.BUILD-SNAPSHOT</version>
         </dependency>
-        
+          <dependency>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-resources-plugin</artifactId>
+	    <version>2.6</version>
+	</dependency>
+		  <dependency>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-compiler-plugin</artifactId>
+	    <version>3.1</version>
+	</dependency>
     </dependencies>
 
     <!-- Package as an executable jar -->
@@ -47,16 +54,4 @@
             <url>http://repo.spring.io/milestone</url>
         </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots><enabled>true</enabled></snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots><enabled>true</enabled></snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
