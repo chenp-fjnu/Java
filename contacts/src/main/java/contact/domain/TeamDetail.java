@@ -9,15 +9,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class MemberDetail {
-
+public class TeamDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String value;
 	@ManyToOne
-	private Member member;
+	private Team team;
 
 	public Long getId() {
 		return id;
@@ -43,17 +42,17 @@ public class MemberDetail {
 		this.value = value;
 	}
 
-	public Member getMember() {
-		return member;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDetail [id=" + id + ", name=" + name + ", value=" + value + ", member=" + member + "]";
+		return "TeamDetail [id=" + id + ", name=" + name + ", value=" + value + ", team=" + team + "]";
 	}
 
 }

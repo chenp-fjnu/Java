@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class HelloController {
 
-	
 	@RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
-    }
+	@ResponseBody
+	String home() {
+		return "Hello World!";
+	}
 
 }

@@ -1,5 +1,5 @@
 package contact.controller;
 
-public class GroupController {
+public class TeamController {
 
 }
