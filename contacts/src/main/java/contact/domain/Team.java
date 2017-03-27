@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
 public class Team {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
