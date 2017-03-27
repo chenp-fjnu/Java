@@ -5,7 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class MemberDetail {
@@ -16,6 +17,7 @@ public class MemberDetail {
 	private String name;
 	private String value;
 	@ManyToOne
+	@JsonIgnore
 	private Member member;
 
 	public Long getId() {

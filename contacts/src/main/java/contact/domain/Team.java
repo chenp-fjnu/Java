@@ -20,14 +20,14 @@ public class Team {
 	private Long id;
 	private String name;
 	private String description;
+	
+	@OneToMany(mappedBy = "team")
+	private Set<TeamDetail> teamDetails = new HashSet<>();
 	@ManyToMany
 	@JoinTable(name = "team_member", 
 				joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "member_id", referencedColumnName = "id"))
 	private Set<Member> members = new HashSet<>();
-	@OneToMany(mappedBy = "team")
-	private Set<TeamDetail> teamDetails = new HashSet<>();
-
 	public Long getId() {
 		return id;
 	}

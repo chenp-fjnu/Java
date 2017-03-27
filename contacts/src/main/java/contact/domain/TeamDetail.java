@@ -5,7 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TeamDetail {
@@ -15,6 +18,7 @@ public class TeamDetail {
 	private String name;
 	private String value;
 	@ManyToOne
+	@JsonIgnore
 	private Team team;
 
 	public Long getId() {
