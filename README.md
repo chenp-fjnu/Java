@@ -1,5 +1,12 @@
 # Java
 working on Java
+
+# Spring Freamwork
+http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle
+
+http://www.cnblogs.com/mandroid/archive/2011/07/18/2109829.html
+
+http://www.infoq.com/cn/articles/cf-java-annotation
 # Spring Boot
 # Maven build
 jar 
