@@ -14,8 +14,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.BUILD-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>1.5.2.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<properties>
@@ -27,13 +27,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -41,11 +41,39 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.stormpath.spring</groupId>
+			<artifactId>stormpath-default-spring-boot-starter</artifactId>
+		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.stormpath.sdk</groupId>
+				<artifactId>stormpath-bom</artifactId>
+				<version>1.5.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
@@ -70,6 +98,14 @@
 			<url>https://repo.spring.io/milestone</url>
 			<snapshots>
 				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>nexus-aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 	</repositories>

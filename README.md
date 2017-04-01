@@ -6,8 +6,17 @@ http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle
 
 # SSH
 https://www.zhihu.com/question/21142149
+# Spring MVC
+https://course.tianmaying.com/spring-mvc
 # Spring Boot
 https://start.spring.io/
+
+http://codecentric.github.io/spring-boot-admin/1.4.6/
+
+SpringBoot≈‰÷√ Ù–‘÷ÆMVC£∫https://segmentfault.com/a/1190000004315890
+
+https://www.tianmaying.com/tutorial/spring-boot-overview
+
 # Maven build
 jar 
 

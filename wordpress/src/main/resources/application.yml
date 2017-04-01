@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://bdm247336490.my3w.com:3306/bdm247336490_db
+    username: bdm247336490
+    password: sql05247299
+  jpa:
+#    hibernate:
+#      ddl-auto: update
+    show-sql: true

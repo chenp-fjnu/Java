@@ -71,7 +71,7 @@
 						<enabled>false</enabled>
 					</snapshots>
 				</pluginRepository>
-				<repositpluginRepositoryory>
+				<pluginRepository>
 					<id>spring-snapshots</id>
 					<name>spring-snapshots</name>
 					<url>http://repo.spring.io/snapshot</url>
