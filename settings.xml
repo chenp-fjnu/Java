@@ -36,12 +36,56 @@
 						<enabled>false</enabled>
 					</snapshots>
 				</repository>
+				<repository>
+					<id>spring-snapshots</id>
+					<name>spring-snapshots</name>
+					<url>http://repo.spring.io/snapshot</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>spring-milestones</id>
+					<name>spring-milestones</name>
+					<url>http://repo.spring.io/milestone</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
 					<id>nexus</id>
 					<name>local private nexus</name>
 					<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<repositpluginRepositoryory>
+					<id>spring-snapshots</id>
+					<name>spring-snapshots</name>
+					<url>http://repo.spring.io/snapshot</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-milestones</id>
+					<name>spring-milestones</name>
+					<url>http://repo.spring.io/milestone</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
