@@ -26,4 +26,4 @@
 * Do not put application.java to default package, should have one package for it
 * All others class should package underneath package of Application.java
 * At least one method in Repository.
-* method in repository can be findBy*field*(), which field should in the entity. 
+* Method in repository can be findBy*field*(), which field should in the entity. 
