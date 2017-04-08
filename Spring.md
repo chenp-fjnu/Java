@@ -14,7 +14,7 @@ https://start.spring.io/
 
 http://codecentric.github.io/spring-boot-admin/1.4.6/
 
-SpringBootÅäÖÃÊôÐÔÖ®MVC£ºhttps://segmentfault.com/a/1190000004315890
+SpringBoot配置属性之MVC https://segmentfault.com/a/1190000004315890
 
 https://www.tianmaying.com/tutorial/spring-boot-overview
 
