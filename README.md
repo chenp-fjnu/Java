@@ -4,6 +4,7 @@ working on Java
 # Spring Freamwork
 http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle
 
+http://www.cnblogs.com/davidwang456/p/5645906.html
 # SSH
 https://www.zhihu.com/question/21142149
 # Spring MVC
@@ -13,7 +14,7 @@ https://start.spring.io/
 
 http://codecentric.github.io/spring-boot-admin/1.4.6/
 
-SpringBoot≈‰÷√ Ù–‘÷ÆMVC£∫https://segmentfault.com/a/1190000004315890
+SpringBoot√Ö√§√ñ√É√ä√¥√ê√î√ñ¬ÆMVC¬£¬∫https://segmentfault.com/a/1190000004315890
 
 https://www.tianmaying.com/tutorial/spring-boot-overview
 
