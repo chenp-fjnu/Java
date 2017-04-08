@@ -18,15 +18,3 @@ SpringBoot配置属性之MVC https://segmentfault.com/a/1190000004315890
 
 https://www.tianmaying.com/tutorial/spring-boot-overview
 
-# Maven build
-jar 
-
-RPM 
-
-### wiki:
-
-http://www.cnblogs.com/zz0412/p/Maven_pom.html
-
-http://wiki.jikexueyuan.com/project/maven/pom.html
-
-https://www.zybuluo.com/haokuixi/note/25985
