@@ -11,4 +11,5 @@
 ## mybatis
 ## Thread in Java
 ## DirectWebRemoting (DWR)
-
+## WebSocket
+### WebSocketHandlerAdapter 
