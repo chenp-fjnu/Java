@@ -10,5 +10,5 @@
 ## velocity
 ## mybatis
 ## Thread in Java
-
+## DirectWebRemoting (DWR)
 
