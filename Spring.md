@@ -18,13 +18,28 @@ SpringBoot配置属性之MVC https://segmentfault.com/a/1190000004315890
 
 https://www.tianmaying.com/tutorial/spring-boot-overview
 
-# Code:
+@SpringBootApplication
+
+@EnableConfigurationProperties
+
+@Configuration
+
 @Component
+# Code:
+
+@Component
+
 public class InitialProcessor implements ApplicationListener<ContextRefreshedEvent> {
-    private static Logger LOG = Logger.getLogger(InstantiationProcessor.class);
+   
+   private static Logger LOG = Logger.getLogger(InstantiationProcessor.class);
+    
     @Override
+    
     public void onApplicationEvent(ContextRefreshedEvent event) {
-       ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:conf/application-context.xml");
+      
+      ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:conf/application-context.xml");
+    
     }
+
 }
 
