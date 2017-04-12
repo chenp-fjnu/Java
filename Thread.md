@@ -23,3 +23,4 @@
 ### Java concurrency in Pratice
 # Wiki
 java.util.concurrent介绍: http://www.cnblogs.com/sarafill/archive/2011/05/18/2049461.html
+Java 8 Concurrency Tutorial: Threads and Executors: http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
