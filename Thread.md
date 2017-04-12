@@ -21,3 +21,5 @@
 # Books
 ### Core Java
 ### Java concurrency in Pratice
+# Wiki
+java.util.concurrent介绍: http://www.cnblogs.com/sarafill/archive/2011/05/18/2049461.html
