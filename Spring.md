@@ -31,7 +31,7 @@ https://www.tianmaying.com/tutorial/spring-boot-overview
 
 @Repository 
 
-<context:annotation-config/>
+<context:annotation-config />
 
 <context:component-scan base-package="com.xx.xx" /> 
 
