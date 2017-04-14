@@ -24,8 +24,20 @@ https://www.tianmaying.com/tutorial/spring-boot-overview
 
 @Configuration
 
-@Component
+### @Component
+@Controller
 
+@Service
+
+@Repository 
+
+<context:annotation-config/>
+
+<context:component-scan base-package="com.xx.xx" /> 
+
+<mvc:annotation-driven />
+
+在spring-servlet.xml中只需要扫描所有带@Controller注解的类，在applicationContext中可以扫描所有其他带有注解的类（也可以过滤掉带@Controller注解的类）。
 # Spring Cloud
 Spring Cloud基础教程: http://blog.didispace.com/Spring-Cloud%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/
 Eureka: https://github.com/Netflix/eureka/wiki
