@@ -11,6 +11,7 @@ top: try press "1"
 kill
 
 nice -n #priority command: modify the priority for new proccess
+
 renice pid: modify the priority for exist process
 
 &: run as backgroud, only work for one terminal
@@ -70,16 +71,22 @@ service crond restart
 
 /etc/cron.allow|cron.deny: permission who can/can't run crontab command.
 
+/etc/crontab: list system schedule jobs
+
+* "* * * * * user-name command":
+* /etc/cron.monthly|weekly|daily|hourly/: system scheduled jobs
+
 crontab [option]: 
 
 * -e: edit
 * -l: list out
 * -r: clear all jobs
    
-"* * * * * command": minofhour hourofday dayofmonth monthofyear dayofweek
+"* * * * * command": minofhour hourofday dayofmonth monthofyear dayofweek(0-6, 0 or 7 means Sunday)
 
 "n1,n2,n3": only happen on n1,n2,n3
 
 "n1-n2": happen from n1-n2
 
 "*/n": happen every n
+
