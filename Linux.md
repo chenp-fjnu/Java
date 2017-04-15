@@ -77,7 +77,7 @@ service crond restart
 
 * "* * * * * user-name command":
 * /etc/cron.monthly|weekly|daily|hourly/: system scheduled jobs
-
+* anacron: /var/spool/anacron/cron.daily|weekly|monthly
 crontab [option]: 
 
 * -e: edit
