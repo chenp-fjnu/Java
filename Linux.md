@@ -74,4 +74,10 @@ crontab [option]:
 
    -e: edit
    
-* * * * * command: min hour dayofmonth month dayofweek 
+"* * * * * command": minofhour hourofday dayofmonth month dayofweek
+
+"n1,n2,n3": only happen on n1,n2,n3
+
+"n1-n2": happen from n1-n2
+
+"*/n": every n
