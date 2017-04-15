@@ -80,4 +80,4 @@ crontab [option]:
 
 "n1-n2": happen from n1-n2
 
-"*/n": every n
+"*/n": happen every n
