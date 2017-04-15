@@ -1,6 +1,8 @@
 # Wiki
 http://www.cnblogs.com/peida/tag/%E6%AF%8F%E6%97%A5%E4%B8%80linux%E5%91%BD%E4%BB%A4/
 
+#!/bin/bash: the header of shell script
+
 # Commands
 ps
 
@@ -42,3 +44,20 @@ file /bin/ls: check 32bit or 64bit
 lsb_release -a: release version of linux
 
 lsof: list out the files using by process or the processes using  one file, or the files using for one user.
+
+# Schedule jobs
+
+## at (one time schedule job)
+
+chkconfig -- list |grep atd:
+
+service atd status/start:
+
+/etc/at.allow|at.deny: list out the users who able to run at command, only has deny by default. root is ok always.
+
+at [option] time: 
+>at command
+
+atq: list all at schedule jobs
+
+atrm: remove one at schedule job
