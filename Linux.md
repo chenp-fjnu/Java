@@ -61,3 +61,17 @@ at [option] time:
 atq: list all at schedule jobs
 
 atrm: remove one at schedule job
+
+## crontab
+
+chkconfig --list |grep cron
+
+service crond restart
+
+/etc/cron.allow|cron.deny: permission who can/can't run crontab command.
+
+crontab [option]: 
+
+   -e: edit
+   
+* * * * * command: min hour dayofmonth month dayofweek 
