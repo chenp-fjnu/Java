@@ -72,7 +72,9 @@ service crond restart
 
 crontab [option]: 
 
-   -e: edit
+* -e: edit
+* -l: list out
+* -r: clear all jobs
    
 "* * * * * command": minofhour hourofday dayofmonth month dayofweek
 
