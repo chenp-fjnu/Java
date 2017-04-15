@@ -76,7 +76,7 @@ crontab [option]:
 * -l: list out
 * -r: clear all jobs
    
-"* * * * * command": minofhour hourofday dayofmonth month dayofweek
+"* * * * * command": minofhour hourofday dayofmonth monthofyear dayofweek
 
 "n1,n2,n3": only happen on n1,n2,n3
 
