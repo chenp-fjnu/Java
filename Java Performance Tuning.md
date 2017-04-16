@@ -21,3 +21,17 @@ use jstatd to start RMI
 ### JProfiler
 
 ## Jemeter: Stress testing
+
+## Performance Matrix
+### Response time
+### Throughput
+###
+## CRQS(Read/Write Spliting)
+### one master for write
+### multiple slave server for read
+### master will sync data to salves
+## Database Sharding
+### Vertical
+### Horizontal
+### Vertical then Horizontal
+
