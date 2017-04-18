@@ -26,7 +26,7 @@ use jstatd to start RMI
 ### Response time
 ### Throughput
 ###
-## CRQS(Read/Write Spliting)
+## CQRS(Read/Write Spliting)
 ### one master for write
 ### multiple slave server for read
 ### master will sync data to salves
