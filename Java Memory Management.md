@@ -108,3 +108,12 @@ Remark: Stop-the-world
 Concurrent Sweep
 
 Reset
+
+# -X and -XX options
+Options that begin with -X are non-standard (not guaranteed to be supported on all VM implementations), and are subject to change without notice in subsequent releases of the JDK.
+
+以 -X 开头的是非标准选项（不能保证被所有的 JVM 实现都支持），如果在后续版本的 JDK 中有变更恕不另行通知。
+
+Options that are specified with -XX are not stable and are not recommended for casual use. These options are subject to change without notice.
+
+指定 -XX 的选项是不稳定、不建议随便使用的。这些选项在今后变更恕不另行通知。
