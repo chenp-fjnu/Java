@@ -8,9 +8,9 @@ chmod
 
 chown
 
->: output override
+\>: output override
 
->>: output append
+\>\>: output append
 
 |: pipeline
 
