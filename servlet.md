@@ -24,16 +24,15 @@ public class AsyncDemoServlet extends HttpServlet {...}
     <servlet-name>SimpleServlet</servlet-name>
     <url-pattern>/simple</url-pattern>
 </servlet-mapping>
-```xml
+```
 ### After 
-
+<code>
 @WebServlet(urlPatterns = {"/simple"}, asyncSupported = true, 
 loadOnStartup = -1, name = "SimpleServlet", displayName = "ss", 
 initParams = {@WebInitParam(name = "username", value = "tom")} 
 ) 
-
 public class SimpleServlet extends HttpServlet{ … }
-
+</code>
 ## @WebInitParam (see above)
 ## @WebFilter
 ### Before
@@ -46,7 +45,7 @@ public class SimpleServlet extends HttpServlet{ … }
     <filter-name>SimpleFilter</filter-name> 
     <servlet-name>SimpleServlet</servlet-name> 
 </filter-mapping>
-```xml
+```
 ### After
 @WebFilter(servletNames = {"SimpleServlet"},filterName="SimpleFilter") 
 
@@ -58,7 +57,7 @@ ServletContextListener/ServletContextAttributeListener/ServletRequestListener/Se
 <listener> 
     <listener-class>footmark.servlet.SimpleListener</listener-class> 
 </listener>
-```xml
+```
 ### After
 @WebListener("This is only a demo listener") 
 
