@@ -50,6 +50,7 @@ public class SimpleServlet extends HttpServlet{ … }
 @WebFilter(servletNames = {"SimpleServlet"},filterName="SimpleFilter") 
 
 public class LessThanSixFilter implements Filter{...}
+
 ## @WebListener
 ServletContextListener/ServletContextAttributeListener/ServletRequestListener/ServletRequestAttributeListener/HttpSessionListener/HttpSessionAttributeListener
 ### Before
