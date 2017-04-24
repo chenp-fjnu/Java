@@ -26,13 +26,13 @@ public class AsyncDemoServlet extends HttpServlet {...}
 </servlet-mapping>
 ```
 ### After 
-<code>
 @WebServlet(urlPatterns = {"/simple"}, asyncSupported = true, 
 loadOnStartup = -1, name = "SimpleServlet", displayName = "ss", 
 initParams = {@WebInitParam(name = "username", value = "tom")} 
 ) 
+
 public class SimpleServlet extends HttpServlet{ … }
-</code>
+
 ## @WebInitParam (see above)
 ## @WebFilter
 ### Before
