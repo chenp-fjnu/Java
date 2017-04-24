@@ -6,6 +6,7 @@ public class AsyncDemoServlet extends HttpServlet {...}
 
 # Annotation to remove web.xml 
 ## @WebServlet
+
 ### Before:
 
 <servlet>
@@ -25,10 +26,12 @@ public class AsyncDemoServlet extends HttpServlet {...}
 </servlet-mapping>
 
 ### After 
+
 @WebServlet(urlPatterns = {"/simple"}, asyncSupported = true, 
 loadOnStartup = -1, name = "SimpleServlet", displayName = "ss", 
 initParams = {@WebInitParam(name = "username", value = "tom")} 
 ) 
+
 public class SimpleServlet extends HttpServlet{ … }
 
 ## @WebInitParam (see above)
@@ -44,6 +47,7 @@ public class SimpleServlet extends HttpServlet{ … }
 </filter-mapping>
 ### After
 @WebFilter(servletNames = {"SimpleServlet"},filterName="SimpleFilter") 
+
 public class LessThanSixFilter implements Filter{...}
 ## @WebListener
 ServletContextListener/ServletContextAttributeListener/ServletRequestListener/ServletRequestAttributeListener/HttpSessionListener/HttpSessionAttributeListener
@@ -53,5 +57,6 @@ ServletContextListener/ServletContextAttributeListener/ServletRequestListener/Se
 </listener>
 ### After
 @WebListener("This is only a demo listener") 
+
 public class SimpleListener implements ServletContextListener{...}
 ## @MultipartConfig
