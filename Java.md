@@ -16,3 +16,8 @@ One of HashMap's subclasses is LinkedHashMap, so in the event that you'd want pr
 Since synchronization is not an issue for you, I'd recommend HashMap. If synchronization becomes an issue, you may also look at ConcurrentHashMap.
 
 ### implements java.io.Serializable
+
+
+Properties properties = new Properties();
+			is = App.class.getResourceAsStream("/application.properties");
+			properties.load(is);
