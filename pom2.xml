@@ -1,0 +1,568 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<properties>
+		<flow>paas</flow>
+		<componentName>service</componentName>
+		<skipTests>true</skipTests>
+		<rpm-user>ping</rpm-user>
+		<rpm-group>Ping</rpm-group>
+		<rpm-install-location>/opt/service/${flow}/${componentName}/${project.version}</rpm-install-location>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tarfile>${basedir}/${project.name}.tar</tarfile>
+		<appId>123456</appId>
+		<artifactPrefix>Chet</artifactPrefix>
+		<Chet-version>2.0_C6</Chet-version>
+		<camel-version>2.12.2</camel-version>
+		<spring-version>3.2.4.RELEASE</spring-version>
+		<dl-version>2.0_D1</dl-version>
+		<junit-version>4.11</junit-version>
+		<commons-codec-version>1.10</commons-codec-version>
+		<slf4j-log4j-version>1.7.16</slf4j-log4j-version>
+		<Ping-core-version>1.0_B0</Ping-core-version>
+		<Ping-commons-version>3.1_A0</Ping-commons-version>
+		<microsoft-ews-version>2.0</microsoft-ews-version>
+		<velocity-version>1.7</velocity-version>
+		<commons-dbcp-version>1.4</commons-dbcp-version>
+	</properties>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.citigroup.123456</groupId>
+	<artifactId>${artifactPrefix}-${flow}-${componentName}</artifactId>
+	<version>1.3_A3</version>
+	<name>${artifactPrefix}-${flow}-${componentName}</name>
+	<description>${artifactPrefix}-${flow}-${componentName}</description>
+	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
+	<inceptionYear>2016</inceptionYear>
+	
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jacoco</groupId>
+										<artifactId>
+											jacoco-maven-plugin
+										</artifactId>
+										<versionRange>
+											[0.7.4.201502262128,)
+										</versionRange>
+										<goals>
+											<goal>prepare-agent</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<!-- build own classes jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<excludes>
+						<exclude>**/META-INF/spring/**</exclude>
+						<exclude>**/META-INF/spring</exclude>
+						<exclude>**/config/**</exclude>
+						<exclude>*.properties</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>**/vm/*.png</exclude>
+					</excludes>
+					<includes>
+						<include>**/*.class</include>
+						<include>**/META-INF/services/org/apache/camel/component/**</include>
+						<include>**/vm/*.vm</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- create start scripts -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<executions>
+					<execution>
+						<!-- new gateway start script -->
+						<id>new-start-script</id>
+						<phase>package</phase>
+						<configuration>
+							<assembleDirectory>${project.build.directory}</assembleDirectory>
+							<extraJvmArguments>-Dflow=${flow} -Dregion=$paas_REGION
+								-DPing.env=$Ping_ENV -Dkdb.env=$KDB_ENV -Dems.env=$EMS_ENV
+								-Djetty.env=$JETTY_ENV -Dml.env=$ML_ENV
+								-Dlog.prefix=$Chet_LOG_PREFIX -Xms512m -Xmx3600m   -XX:MaxPermSize=128m
+							</extraJvmArguments>
+							<repositoryName>lib</repositoryName>
+							<repositoryLayout>flat</repositoryLayout>
+							<configurationDirectory>conf</configurationDirectory>
+							<copyConfigurationDirectory>false</copyConfigurationDirectory>
+							<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+							<binFileExtensions>
+								<unix>.sh</unix>
+							</binFileExtensions>
+							<platforms>
+								<platform>windows</platform>
+								<platform>unix</platform>
+							</platforms>
+							<programs>
+								<program>
+									<name>start0</name>
+									<mainClass>Chet.framework.core.App</mainClass>
+									<platforms>
+										<platform>windows</platform>
+										<platform>unix</platform>
+									</platforms>
+								</program>
+							</programs>
+						</configuration>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<!-- move all .properties files from classes to conf directory -->
+						<id>move-properties-to-conf</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<copy todir="${project.build.directory}/conf"
+									preservelastmodified="true" overwrite="true">
+									<fileset dir="${project.build.directory}/classes"
+										includes=" *.xml, *.xsd" />
+								</copy>
+								<copy todir="${project.build.directory}/conf/rule"
+									preservelastmodified="true" overwrite="true">
+									<fileset dir="${basedir}/src/main/resources/com/company/Chet/rule"
+										includes="*.drl" />
+								</copy>
+								<copy todir="${project.build.directory}/conf/META-INF/spring"
+									preservelastmodified="true" overwrite="true">
+									<fileset dir="${basedir}/src/main/resources/META-INF/spring"
+										includes="*.*" />
+								</copy>
+								<copy todir="${project.build.directory}/pkg">
+									<fileset dir="${basedir}/src/main/scripts" includes="**.*" />
+								</copy>
+								<copy todir="${project.build.directory}/conf/config"
+									preservelastmodified="true" overwrite="true">
+									<fileset dir="${project.build.directory}/classes/config"
+										includes="**/*.properties" />
+								</copy>
+								<copy todir="${project.build.directory}/conf/vm"
+									preservelastmodified="true" overwrite="true">
+									<fileset dir="${project.build.directory}/classes/vm"
+										includes="*.png" />
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-cli</id>
+						<configuration>
+							<target name="sendtohermes" description="send source to Hermes">
+								<delete file="${tarfile}" />
+								<delete file="${tarfile}.Z" />
+								<echo message="+++Fixing CRLF+++" />
+								<fixcrlf srcdir="src/main/" eol="lf" />
+								<tar destfile="${tarfile}" basedir="${basedir}"
+									excludes=".svn/**, target/**, scripts/**, paas.env, settings.xml" />
+								<exec executable="compress" failonerror="yes">
+									<arg line="${tarfile}" />
+								</exec>
+								<echo message="${tarfile}.Z" />
+								<echo>send to hermes</echo>
+								<exec executable="send_to_hermes" failonerror="yes">
+									<arg file="${tarfile}.Z" />
+								</exec>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>clean</id>
+						<phase>clean</phase>
+						<configuration>
+							<target>
+								<delete file="${tarfile}" />
+								<delete file="${tarfile}.Z" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>create-run-script</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<copy todir="${project.build.directory}/bin">
+									<fileset dir="src/main/bin" includes="*.sh" />
+									<fileset dir="src/main/bin" includes="README*" />
+								</copy>
+								<!-- .sh script -->
+								<copy file="${project.build.directory}/bin/start0.sh"
+									tofile="${project.build.directory}/bin/start0.sh.classpath" />
+								<replaceregexp
+									file="${project.build.directory}/bin/start0.sh.classpath"
+									match=".+\n(CLASSPATH=[^\n]+\n).+" replace="\1" flags="s" />
+								<copy file="${project.build.directory}/bin/start0.sh"
+									tofile="${project.build.directory}/bin/start0.sh.jvmargs" />
+								<replaceregexp
+									file="${project.build.directory}/bin/start0.sh.jvmargs" match=".+\n(EXTRA_JVM_ARGUMENTS=[^\n]+\n).+"
+									replace="\1" flags="s" />
+								<concat destfile="${project.build.directory}/bin/start.sh">
+									<fileset file="src/main/bin/start.sh.1.txt" />
+									<fileset file="${project.build.directory}/bin/start0.sh.classpath" />
+									<fileset file="${project.build.directory}/bin/start0.sh.jvmargs" />
+									<fileset file="src/main/bin/start.sh.2.txt" />
+									<!--<fileset file="${project.build.directory}/bin/start.mainclass"/> -->
+									<fileset file="src/main/bin/start.sh.3.txt" />
+								</concat>
+								<!-- .bat script -->
+								<copy file="${project.build.directory}/bin/start0.bat"
+									tofile="${project.build.directory}/bin/start0.bat.classpath" />
+								<replaceregexp
+									file="${project.build.directory}/bin/start0.bat.classpath"
+									match=".+\n(set CLASSPATH=[^\n]+\n).+" replace="\1" flags="s" />
+								<copy file="${project.build.directory}/bin/start0.bat"
+									tofile="${project.build.directory}/bin/start0.bat.jvmargs" />
+								<replaceregexp
+									file="${project.build.directory}/bin/start0.bat.jvmargs" match=".+\n(set EXTRA_JVM_ARGUMENTS=[^\n]+\n).+"
+									replace="\1" flags="s" />
+								<concat destfile="${project.build.directory}/bin/start.bat">
+									<fileset file="src/main/bin/start.bat.1.txt" />
+									<fileset file="${project.build.directory}/bin/start0.bat.classpath" />
+									<fileset file="${project.build.directory}/bin/start0.bat.jvmargs" />
+									<fileset file="src/main/bin/start.bat.2.txt" />
+									<!--<fileset file="${project.build.directory}/bin/start.mainclass"/> -->
+									<fileset file="src/main/bin/start.bat.3.txt" />
+								</concat>
+								<delete>
+									<fileset dir="${project.build.directory}/bin" includes="start0.*" />
+								</delete>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>move-built-rpm-to-root</id>
+						<phase>verify</phase>
+						<configuration>
+							<target>
+								<concat destfile="${basedir}/pkg/package.spec"
+									fixlastline="true">
+									<filelist files="src/main/rpm/ident.txt" dir="${basedir}" />
+									<filelist files="${artifactId}.spec" dir="${project.build.directory}/rpm/SPECS" />
+								</concat>
+								<echo>${basedir}/pkg/package.spec created</echo>
+								<move todir="${basedir}">
+									<fileset dir="${project.build.directory}/rpm/">
+										<include name="**/*.rpm" />
+									</fileset>
+								</move>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>ant</groupId>
+						<artifactId>optional</artifactId>
+						<version>1.5.4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>rpm-maven-plugin</artifactId>
+				<version>2.1.5</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<release>123456</release>
+							<copyright>2012, Ping</copyright>
+							<distribution>Chet Service</distribution>
+							<group>System</group>
+							<needarch>false</needarch>
+							<packager>Ping</packager>
+							<version>${project.version}</version>
+							<prefix>${rpm-install-location}</prefix>
+							<mappings>
+								<mapping>
+									<directory>${rpm-install-location}/bin</directory>
+									<filemode>755</filemode>
+									<username>${rpm-user}</username>
+									<groupname>${rpm-group}</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/bin</location>
+											<includes>
+												<include>*.sh</include>
+												<include>README.txt</include>
+											</includes>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>${rpm-install-location}/conf</directory>
+									<filemode>755</filemode>
+									<username>${rpm-user}</username>
+									<groupname>${rpm-group}</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/conf</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>${rpm-install-location}/lib</directory>
+									<filemode>755</filemode>
+									<username>${rpm-user}</username>
+									<groupname>${rpm-group}</groupname>
+									<dependency />
+									<sources>
+										<source>
+											<location>
+												${project.build.directory}/lib/${project.artifactId}-${project.version}.jar
+											</location>
+										</source>
+									</sources>
+								</mapping>
+								<!-- <mapping> <directory>${rpm-install-location}/log</directory> 
+									<filemode>755</filemode> <username>${rpm-user}</username> <groupname>${rpm-group}</groupname> 
+									</mapping> -->
+								<mapping>
+									<directory>${rpm-install-location}/pkg</directory>
+									<filemode>755</filemode>
+									<username>${rpm-user}</username>
+									<groupname>${rpm-group}</groupname>
+									<sources>
+										<source>
+											<location>${project.build.directory}/pkg</location>
+										</source>
+									</sources>
+								</mapping>
+							</mappings>
+							<preinstallScriptlet>
+								<scriptFile>src/main/scripts/preinstall.sh</scriptFile>
+							</preinstallScriptlet>
+							<postinstallScriptlet>
+								<scriptFile>src/main/scripts/postinstall.sh</scriptFile>
+							</postinstallScriptlet>
+							<preremoveScriptlet>
+								<scriptFile>src/main/scripts/postuninstall.sh</scriptFile>
+							</preremoveScriptlet>
+						</configuration>
+						<goals>
+							<goal>rpm</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.4.201502262128</version>
+				<configuration>
+					<includes>
+						<include>com.*</include>
+					</includes>
+					<excludes>
+						<exclude>*Chet.framework.component.*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>pre-test</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<includes>
+						<include>**/*Test*.java</include>
+					</includes>
+					<!-- argument for unit test -->
+					<argLine>-DPing.env=DEV -Dregion=ALL ${argLine}</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.Ping.123456.Chet.applications.Service</groupId>
+			<artifactId>Chet-rfqservice-commons</artifactId>
+			<version>${Ping-commons-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mockito</groupId>
+					<artifactId>mockito-all</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.Ping.123456.Chet.applications.RFQ-Service</groupId>
+			<artifactId>Chet-rfqservice-CentralPingService</artifactId>
+			<version>${Ping-core-version}</version>
+			<exclusions> 
+        		<exclusion> <!-- ignore quartz jar from Ping core -->
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+        	</exclusion>
+      		</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j-log4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-log4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.ews-java-api</groupId>
+			<artifactId>ews-java-api</artifactId>
+			<version>${microsoft-ews-version}</version>
+		</dependency>
+		<dependency><!-- import camel quartz depedency  -->
+   		 	<groupId>org.apache.camel</groupId>
+   		 	<artifactId>camel-quartz</artifactId>
+   		 	<version>${camel-version}</version>
+		</dependency>
+		<dependency>
+   			 <groupId>org.apache.velocity</groupId>
+   			 <artifactId>velocity</artifactId>
+   			 <version>${velocity-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.powermock</groupId>
+		    <artifactId>powermock-module-junit4</artifactId>
+		    <version>1.6.4</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.powermock</groupId>
+		    <artifactId>powermock-api-mockito</artifactId>
+		    <version>1.6.4</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.5</version>
+		</dependency>
+	</dependencies>
+
+
+	
+</project>
